@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'assets/css/materialize.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="red darken-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="moradias.html">Moradias</a></li>
+        <li><a href="teoria.html">Tutores</a></li>
+        <li><a href="singin.html">Singin/Singup</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="moradias.html">Moradias</a></li>
+        <li><a href="teoria.html">Tutores</a></li>
+        <li><a href="singin.html">Singin/Singup</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <div class="row">
+        {%for rep in reps%}
+        <div class="col m4 s12">
+          <div class="card">
+		    <div class="card-image waves-effect waves-block waves-light">
+		      <img class="activator" src="{{rep.fotos.url}}">
+		    </div>
+		    <div class="card-content">
+		      <span class="card-title activator grey-text text-darken-4">{{rep.nome}}<i class="material-icons right small">arrow_drop_down</i></span>
+            </div>
+		    <div class="card-reveal">
+		      <span class="card-title grey-text text-darken-4">{{rep.nome}}<i class="material-icons right">close</i></span>
+		      <p>{{rep.descricao}}</p>
+              <p>Vagas: {{rep.vagas}}</p>
+              <p>Valor: {{rep.valor}}</p>
+              <p><a href="/reps/get/{{rep.id}}">Mais detalhes</a></p>
+		    </div>
+		  </div>
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'assets/js/materialize.js' %}"></script>
+  <script src="{% static 'assets/js/init.js' %}"></script>
+
+  </body>
+</html>

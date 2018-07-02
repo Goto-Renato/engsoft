@@ -1,0 +1,73 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+ <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+ </head>
+
+<body>
+<nav class="red darken-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="moradias.html">Moradias</a></li>
+        <li><a href="teoria.html">Tutores</a></li>
+        <li><a href="singin.html">Singin/Singup</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="moradias.html">Moradias</a></li>
+        <li><a href="teoria.html">Tutores</a></li>
+        <li><a href="singin.html">Singin/Singup</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+    <div class="container col s12 m12 l12" style="margin-left: 50px; margin-top: -45px">
+        <div class="carousel" style="width: 500px">
+            <a class="carousel-item" style="width: 300px" href="#one!"><img src="{{rep.fotos.url}}"></a>
+            <a class="carousel-item" style="width: 300px" href="#one!"><img src="{{rep.fotos.url}}"></a>
+            <a class="carousel-item" style="width: 300px" href="#one!"><img src="{{rep.fotos.url}}"></a>
+            <a class="carousel-item" style="width: 300px" href="#one!"><img src="{{rep.fotos.url}}"></a>
+        </div>
+
+        <div class="row">
+            <div style="width: 500px">
+                  <p class="col m6 l6" style="margin-top: 0px">Nome: {{rep.nome}}</p>
+                  <p class="col m6 l3" style="margin-top: 0px">Vagas: {{rep.vagas}}</p>
+                  <p class="col m6 l3" style="margin-top: 0px">Valor: {{rep.valor}}</p>
+                  <p class="col m6 l4" style="margin-top: 0px">Mobiliado: {{rep.mobiliado}}</p>
+                  <p class="col m6 l4" style="margin-top: 0px">Seguranca: {{rep.seguranca}}</p>
+                  <p class="col m6 l4" style="margin-top: 0px">Garagem: {{rep.garagem}}</p>
+                  <p class="col m6 l6" style="margin-top: 0px">Entrada Mais proxima: {{rep.entrada_prox}}</p>
+                  <p class="col m6 l12" style="margin-top: 0px">Endereco: {{rep.endereco}}</p>
+                  <p class="col m6 l12" style="margin-top: 0px">Descriçao: {{rep.descricao}}</p>
+              </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <script>
+    $(document).ready(function(){
+          $('.carousel').carousel();
+        });
+    </script>
+    <!--  Scripts-->
+
+    <script src="{% static 'assets/js/materialize.js' %}"></script>
+    <script src="{% static 'assets/js/init.js' %}"></script>
+
+    </body>
+</html>
