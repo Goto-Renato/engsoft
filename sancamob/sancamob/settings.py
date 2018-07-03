@@ -55,7 +55,7 @@ ROOT_URLCONF = 'sancamob.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/sushi/django/sancamob/templates/'],
+        'DIRS': [BASE_DIR + '/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,10 +118,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+
+
 STATIC_ROOT = ' '
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (('assets', '/home/sushi/django/sancamob/static/'),)
-MEDIA_ROOT = '/home/sushi/django/sancamob/images/'
+STATICFILES_DIRS = (('assets', BASE_DIR + '/static/'),)
+MEDIA_ROOT = BASE_DIR + '/images/'
 MEDIA_URL = '/media/'
 
 
