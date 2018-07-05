@@ -7,5 +7,8 @@ def reps(request):
 def rep(request, rep_id=1):
     return render_to_response('rep.html',
                               {'rep': Rep.objects.get(id=rep_id)})
+def mapa(request):
+    return render_to_response('testeMapa.html')
 
-
+def json(request):
+    return render_to_response('rocaImoveis.json')

@@ -24,6 +24,9 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^reps/', include('sancamobapp.urls')),
+    url(r'^$', 'sancamobapp.views.reps'),
+    url(r'^imoveislocacao/$', 'sancamobapp.views.mapa'),
+    url(r'^imoveislocacao/rocaImoveis.json/$', 'sancamobapp.views.json'),
 )
 
 if settings.DEBUG:

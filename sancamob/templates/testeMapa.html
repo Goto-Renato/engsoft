@@ -1,6 +1,17 @@
+{%load static%}
 <!doctype html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  	<title>Starter Template - Materialize</title>
+
+  	<!-- CSS  -->
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="{% static 'assets/css/materialize.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
 	<meta charset="utf-8">
 	<title>Teste Mapa</title>
 	<style>
@@ -30,22 +41,38 @@
 
 </head>
 <body>
-	<!--client=AIzaSyBgWBfDsAnC_zf2YQLGLvZrJwDKN9bb3EI-->
-	<div id="map"></div>
-	<iframe id="detalhes"></iframe>
-	<div style="padding-top: 20px; clear: both; text-align: center;">
-		<h4 style="text-align: center;">Imóveis sem localização no mapa</h4>
-		<ul id="semLatLong">
-		</ul>
-	</div>
 
+	<nav class="red darken-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Sancamob</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li><a href="/imoveislocacao">Moradias</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="">Home</a></li>
+        <li><a href="/imoveislocacao">Moradias</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+	<!--client=AIzaSyBgWBfDsAnC_zf2YQLGLvZrJwDKN9bb3EI-->
+	<div class="container">
+		<div id="map"></div>
+		<iframe id="detalhes"></iframe>
+		<div style="padding-top: 20px; clear: both; text-align: center;">
+			<h4 style="text-align: center;">Imóveis sem localização no mapa</h4>
+			<ul id="semLatLong">
+			</ul>
+		</div>
+	</div>
 	<script>
 		initMap = () => {
 			var geocoder = new google.maps.Geocoder();
 			const saoCarlos = {lat: -22.009772, lng: -47.890803};
 			const map = new google.maps.Map(document.getElementById('map'), {zoom: 13, center: saoCarlos});
 			const marker = new google.maps.Marker({position: {lat: -22.0060699, lng: -47.897604}, map: map});
-			fetch('/home/bruno/Documentos/scrapper/rocaScrapper/rocaImoveis.json')
+			fetch('rocaImoveis.json')
 			  .then(response => response.json())
 			  .then(imoveis => {console.log(imoveis);
 				let texto = "";
@@ -98,6 +125,9 @@
 			document.getElementById("detalhes").setAttribute("src", link);
 		};
 	</script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?&v=3.32&callback=initMap"></script>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  	<script src="{% static 'assets/js/materialize.js' %}"></script>
+  	<script src="{% static 'assets/js/init.js' %}"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgWBfDsAnC_zf2YQLGLvZrJwDKN9bb3EI&v=3.32&callback=initMap"></script>
 </body>
 </html>
