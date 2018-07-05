@@ -83,9 +83,9 @@
 						console.log("imovel " + i + " lat: " + lat + " lng: " + long);
 						var markerImovel = new google.maps.Marker({position: {lat: lat, lng: long}, map: map, title: imoveis[i].tipo});
 						markerImovel.addListener('click', () => {
-							mostrarDetalhes(this.getAttribute('link'));
+							mostrarDetalhes(this.link);
 						});
-						markerImovel.setAttribute('link', imoveis[i].link);
+						markerImovel.link = imoveis[i].link;
 					}
 					else{
 /*						// monta uma lista com mais detalhes
