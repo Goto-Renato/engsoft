@@ -14,7 +14,7 @@ class Rep(models.Model):
     descricao = models.TextField()
     mobiliado = models.BooleanField(default=False)
     garagem = models.BooleanField(default=False)
-    seguranca = models.BooleanField(default=False)
+    seguranca = models.IntegerField(default=0)
     entrada_prox = models.TextField(max_length=10)
     contato = models.TextField(max_length=250)
     fotos = models.ImageField(upload_to='images')
