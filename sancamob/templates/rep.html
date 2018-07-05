@@ -59,6 +59,7 @@
                 </div>
 
                 <div class="col s12 m12 l12">
+<<<<<<< HEAD
                     <p class="col m6 l6" style="margin-top: 0px">Nome: {{rep.nome}}</p>
                     <p class="col m6 l3" style="margin-top: 0px">Vagas: {{rep.vagas}}</p>
                     <p class="col m6 l3" style="margin-top: 0px">Valor: {{rep.valor}}</p>
@@ -78,6 +79,28 @@
                     <p class="col m6 l12" style="margin-top: -15px">Endereco: <span id="endereco">{{rep.endereco}}</span></p>
                     <p class="col m6 l12" style="margin-top: -15px">Descriçao: {{rep.descricao}}</p>
                     <p class="col m6 l12" style="margin-top: -15px">Nosso ranking é baseado nas informações do site <a href="http://www.ondefuiroubado.com.br/sao-carlos/SP/estatisticas">onde fui roubado</a></p>
+=======
+                    <div>
+                        <p class="col m6 l6" style="margin-top: 0px">Nome: {{rep.nome}}</p>
+                        <p class="col m6 l3" style="margin-top: 0px">Vagas: {{rep.vagas}}</p>
+                        <p class="col m6 l3" style="margin-top: 0px">Valor: {{rep.valor}}</p>
+                        {%if rep.mobiliado == True%}
+                            <p class="col m6 l4" style="margin-top: -15px">Mobiliado: Sim</p>
+                        {%else%}
+                            <p class="col m6 l4" style="margin-top: -15px">Mobiliado: Nao</p>
+                        {%endif%}
+                            <p class="col m6 l4" style="margin-top: -15px">Seguranca: {{rep.seguranca}}</p>
+                        {%if rep.garagem == True%}
+                            <p class="col m6 l4" style="margin-top: -15px">Garagem: Sim</p>
+                        {%else%}
+                            <p class="col m6 l4" style="margin-top: -15px">Garagem: Nao</p>
+                        {%endif%}
+                        <p class="col m6 l12" style="margin-top: -15px">Entrada Mais proxima: {{rep.entrada_prox}}</p>
+                        <p class="col m6 l12" style="margin-top: -15px">Contato: {{rep.contato}}</p>
+                        <p class="col m6 l12" style="margin-top: -15px">Endereco: <span id="endereco">{{rep.endereco}}</span></p>
+                        <p class="col m6 l12" style="margin-top: -15px">Descriçao: {{rep.descricao}}</p>
+                    </div>
+>>>>>>> 78a601b5757e2288997bccf2408e69180cdea148
                 </div>
             </div>
 
