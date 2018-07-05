@@ -56,7 +56,6 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-	<!--client=AIzaSyBgWBfDsAnC_zf2YQLGLvZrJwDKN9bb3EI-->
 	<div class="container">
 		<div id="map"></div>
 		<iframe id="detalhes"></iframe>
@@ -84,8 +83,9 @@
 						console.log("imovel " + i + " lat: " + lat + " lng: " + long);
 						var markerImovel = new google.maps.Marker({position: {lat: lat, lng: long}, map: map, title: imoveis[i].tipo});
 						markerImovel.addListener('click', () => {
-							mostrarDetalhes(link[i]);// TODO terminar de colocar um listener no marker
+							mostrarDetalhes(this.getAttribute('link'));
 						});
+						markerImovel.setAttribute('link', imoveis[i].link);
 					}
 					else{
 /*						// monta uma lista com mais detalhes
@@ -103,7 +103,7 @@
 						texto += "<li onClick=\"mostrarDetalhes('" + imoveis[i].link + "')\">" + imoveis[i].link.split("/")[4].replace(/-/g, " ") + "</li>";
 					}
 				}
-				// colcando um marcador a partir de um endereço
+				// colocando um marcador a partir de um endereço
 				geocoder.geocode({ 'address': "Rua josé de alencar, são carlos, 835" }, function (results, status) {
 					        console.log(results);
 					        var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
