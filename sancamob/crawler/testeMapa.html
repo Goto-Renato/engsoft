@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Teste Mapa</title>
+	<style>
+		#map {
+		float: left;
+		width: 49%;
+		height: 400px;
+		background-color: grey;
+		}
+		#detalhes {
+		display: inline;
+		float: right;
+		width: 49%;
+		height: 400px;
+		background-color: grey;
+		}
+		#semLatLong .imovel {
+		border-color: gray;
+		border-style: solid;
+		border-width: thin;
+		}
+		#semLatLong{
+		margin: 0px;
+		padding: 0px;
+		}
+	</style>
+
+</head>
+<body>
+	<!--client=AIzaSyBgWBfDsAnC_zf2YQLGLvZrJwDKN9bb3EI-->
+	<div id="map"></div>
+	<iframe id="detalhes"></iframe>
+	<div style="padding-top: 20px; clear: both; text-align: center;">
+		<h4 style="text-align: center;">Imóveis sem localização no mapa</h4>
+		<ul id="semLatLong">
+		</ul>
+	</div>
+
+	<script>
+		initMap = () => {
+			var geocoder = new google.maps.Geocoder();
+			const saoCarlos = {lat: -22.009772, lng: -47.890803};
+			const map = new google.maps.Map(document.getElementById('map'), {zoom: 13, center: saoCarlos});
+			const marker = new google.maps.Marker({position: {lat: -22.0060699, lng: -47.897604}, map: map});
+			fetch('/home/bruno/Documentos/scrapper/rocaScrapper/rocaImoveis.json')
+			  .then(response => response.json())
+			  .then(imoveis => {console.log(imoveis);
+				let texto = "";
+				for(i in imoveis){
+					let lat = parseFloat(imoveis[i].lat);
+					let long = parseFloat(imoveis[i].long);
+					if(Number.isNaN(lat) || Number.isNaN(long)) console.log(imoveis[i].link);
+					if(lat != 0 && long != 0 && !Number.isNaN(lat) && !Number.isNaN(long)){
+						console.log("imovel " + i + " lat: " + lat + " lng: " + long);
+						var markerImovel = new google.maps.Marker({position: {lat: lat, lng: long}, map: map, title: imoveis[i].tipo});
+						markerImovel.addListener('click', () => {
+							mostrarDetalhes(link[i]);// TODO terminar de colocar um listener no marker
+						});
+					}
+					else{
+/*						// monta uma lista com mais detalhes
+						texto += "<li class='imovel' onclick=\"mostrarDetalhes('" + imoveis[i].link + "')\">";
+						texto += "<h5>" + imoveis[i].bairro + "</h5>";
+						texto += "<h5>" + imoveis[i].descricao + "</h5>";
+						texto += "<h5>R$ " + imoveis[i].preco + "</h5>";
+						texto += "<h6>Tipo: " + imoveis[i].tipo;
+						texto += ", Área: " + imoveis[i].area + "m²";
+						texto += ", Banheiros: " + imoveis[i].banheiros;
+						texto += ", Quartos: " + imoveis[i].quartos;
+						texto += ", Vagas de garagem: " + imoveis[i].garagens;
+						texto += "</li>";*/
+						// monta uma lista com menos detalhes
+						texto += "<li onClick=\"mostrarDetalhes('" + imoveis[i].link + "')\">" + imoveis[i].link.split("/")[4].replace(/-/g, " ") + "</li>";
+					}
+				}
+				// colcando um marcador a partir de um endereço
+				geocoder.geocode({ 'address': "Rua josé de alencar, são carlos, 835" }, function (results, status) {
+					        console.log(results);
+					        var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
+					        console.log (latLng);
+						if (status == 'OK') {console.log("Conseguiu criar o marker no mapa");
+					            var marker = new google.maps.Marker({
+					                position: latLng,
+					                map: map
+						    });
+					            console.log (map);
+					        } else {
+					            alert('Geocode was not successful for the following reason: ' + status);
+					        }
+				});
+				document.getElementById("semLatLong").innerHTML = texto;
+			});
+		};
+		const mostrarDetalhes = (link) => {
+			document.getElementById("detalhes").setAttribute("src", link);
+		};
+	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?&v=3.32&callback=initMap"></script>
+</body>
+</html>
