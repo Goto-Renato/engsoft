@@ -11,7 +11,6 @@ class SancaMobSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-	imovelHXS = scrapy.selector.HtmlXPathSelector(response)
         for imovel in response.css('div.listing-item'):
 		listaEndereco = imovel.select('//div[@class="listing-title"]')[0].select("text()").extract()[2].strip().split(" - ")
 		if(listaEndereco[0] != 'Barrac\u00e3o'):
