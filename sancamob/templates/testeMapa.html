@@ -70,7 +70,7 @@
 			var geocoder = new google.maps.Geocoder();
 			const saoCarlos = {lat: -22.009772, lng: -47.890803};
 			const map = new google.maps.Map(document.getElementById('map'), {zoom: 13, center: saoCarlos});
-			const marker = new google.maps.Marker({position: {lat: -22.0060699, lng: -47.897604}, map: map});
+			const marker = new google.maps.Marker({position: {lat: -22.0060699, lng: -47.897604}, map: map, title: "USP"});
 			fetch('rocaImoveis.json')
 			  .then(response => response.json())
 			  .then(imoveis => {console.log(imoveis);
@@ -82,7 +82,7 @@
 					if(lat != 0 && long != 0 && !Number.isNaN(lat) && !Number.isNaN(long)){
 						console.log("imovel " + i + " lat: " + lat + " lng: " + long);
 						var markerImovel = new google.maps.Marker({position: {lat: lat, lng: long}, map: map, title: imoveis[i].tipo});
-						markerImovel.addListener('click', () => {
+						markerImovel.addListener('click', function() {
 							mostrarDetalhes(this.link);
 						});
 						markerImovel.link = imoveis[i].link;
@@ -103,21 +103,6 @@
 						texto += "<li onClick=\"mostrarDetalhes('" + imoveis[i].link + "')\">" + imoveis[i].link.split("/")[4].replace(/-/g, " ") + "</li>";
 					}
 				}
-				// colocando um marcador a partir de um endereço
-				geocoder.geocode({ 'address': "Rua josé de alencar, são carlos, 835" }, function (results, status) {
-					        console.log(results);
-					        var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
-					        console.log (latLng);
-						if (status == 'OK') {console.log("Conseguiu criar o marker no mapa");
-					            var marker = new google.maps.Marker({
-					                position: latLng,
-					                map: map
-						    });
-					            console.log (map);
-					        } else {
-					            alert('Geocode was not successful for the following reason: ' + status);
-					        }
-				});
 				document.getElementById("semLatLong").innerHTML = texto;
 			});
 		};
